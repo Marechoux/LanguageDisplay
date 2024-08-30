@@ -1,0 +1,33 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  push:
+    tags:
+      - '**'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone project
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Create Package
+        uses: BigWigsMods/packager@v2
+        env:
+          CF_API_KEY: ${{ secrets.CF_API_KEY }}
+          GITHUB_OAUTH: ${{ secrets.GHUB_TOKEN }}
+
+      - name: Send Status to Discord
+        uses: nebularg/actions-discord-webhook@v1
+        with:
+          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          status: ${{ job.status }}
+        if: failure()
