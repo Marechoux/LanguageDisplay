@@ -1,0 +1,8 @@
+## Interface: 110002
+## Title: LanguageDisplay
+## Author: Nico - Marechoux
+## Version: 0.7.1
+## SavedVariables: LDDebug, LDRegion, LDLFGColors
+
+locales.lua
+main.lua
