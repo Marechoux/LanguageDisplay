@@ -1,9 +1,15 @@
 ## Interface: 110002
 ## Title: LanguageDisplay
 ## Author: Nico - Marechoux
-## Version: 0.7.2
+## Version: @project-version@
 ## X-Curse-Project-ID: 305315
 ## SavedVariables: LDDebug, LDRegion, LDLFGColors
 
+Libs/LibStub/LibStub.lua
+Libs/LibRealmInfo/LibRealmInfo.lua
+
 locales.lua
 main.lua
+
+database.lua
+utils.lua

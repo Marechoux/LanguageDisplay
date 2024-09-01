@@ -11,6 +11,7 @@ do -- enUS / enGB
 	LDL.ColorsDisabled		= "Colors disabled"
 	LDL.ColorsEnabled		= "Colors enabled"
 	-- Languages
+	LDL.Chinese				= "Chinese"
 	LDL.English				= "English"
 	LDL.EnglishUS			= "English US"
 	LDL.French				= "French"
@@ -33,6 +34,7 @@ if LOCALE == "frFR" then
 	LDL["AvailableRegions"]	= "Régions disponibles"
 	LDL["ColorsDisabled"]	= "Couleurs désactivées"
 	LDL["ColorsEnabled"]	= "Couleurs activées"
+	LDL["Chinese"]			= "Chinois"
 	LDL["English"]			= "Anglais"
 	LDL["EnglishUS"]		= "Anglais (US)"
 	LDL["French"]			= "Français"
@@ -50,6 +52,7 @@ if LOCALE == "frFR" then
 elseif LOCALE == "deDE" then -- maknae/Alwryan
 	LDL["AvailableRegions"]	= "Verfügbare Regionen"
 	LDL["CurrentRegion"]	= "Aktuelle region ist"
+	LDL["Chinese"]			= "Chinesisch"
 	LDL["English"]			= "Englisch"
 	LDL["EnglishUS"]		= "Amerikanisches Englisch"
 	LDL["French"]			= "Französisch"
@@ -67,6 +70,7 @@ elseif LOCALE == "deDE" then -- maknae/Alwryan
 elseif LOCALE == "esES" then -- Alwryan
 	LDL["AvailableRegions"]	= "Regiones disponibles"
 	LDL["CurrentRegion"]	= "La región actual es"
+	LDL["Chinese"]			= "China"
 	LDL["English"]			= "Inglés"
 	LDL["EnglishUS"]		= "Inglés Estados Unidos"
 	LDL["French"]			= "Francés"
@@ -84,6 +88,7 @@ elseif LOCALE == "esES" then -- Alwryan
 elseif LOCALE == "itIT" then -- Alwryan
 	LDL["AvailableRegions"]	= "Regioni disponibili"
 	LDL["CurrentRegion"]	= "La regione attuale è"
+	LDL["Chinese"]			= "Cinese"
 	LDL["English"]			= "Inglese"
 	LDL["EnglishUS"]		= "Inglese USA"
 	LDL["French"]			= "Francese"
@@ -101,6 +106,7 @@ elseif LOCALE == "itIT" then -- Alwryan
 elseif LOCALE == "koKR" then -- maknae	
 	LDL["AvailableRegions"]	= "사용 가능한 지역"
 	LDL["CurrentRegion"]	= "현재 지역"
+	LDL["Chinese"]			= "중국인"
 	LDL["English"]			= "영어"
 	LDL["EnglishUS"]		= "영어(미국)"
 	LDL["French"]			= "프랑스어"
@@ -118,6 +124,7 @@ elseif LOCALE == "koKR" then -- maknae
 elseif LOCALE == "ptBR" then -- Alwryan
 	LDL["AvailableRegions"]	= "Regiões disponíveis"
 	LDL["CurrentRegion"]	= "A região atual é"
+	LDL["Chinese"]			= "Chinês"
 	LDL["English"]			= "Inglês"
 	LDL["EnglishUS"]		= "Inglês (EUA)"
 	LDL["French"]			= "Francês"
