@@ -1,0 +1,10 @@
+externals:
+    Libs/LibRealmInfo:
+        url: https://github.com/janekjl/LibRealmInfo
+        tag: latest
+    Libs/LibStub:
+        url: https://repos.curseforge.com/wow/libstub/trunk
+        tag: 1.0
+
+ignore:
+  - realms.php
