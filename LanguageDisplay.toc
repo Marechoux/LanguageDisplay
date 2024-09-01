@@ -1,5 +1,6 @@
 ## Interface: 110002
 ## Title: LanguageDisplay
+## IconTexture: 1612573
 ## Author: Nico - Marechoux
 ## Version: @project-version@
 ## X-Curse-Project-ID: 305315
