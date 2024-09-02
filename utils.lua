@@ -46,7 +46,28 @@ LDU.locales_codes_colored = {
     ["esMX"] = "|cFF00802bM|cFFffffE|cFFff1a1aX|r"
 }
 
-LDU.getLocale = function (realmId)
+LDU.AddTooltipText = function (textLeft, textRight)
+	local ttLines = GameTooltip:NumLines();
+	local ttUpdated = false;
+	
+	for i = 1, ttLines do
+		if _G["GameTooltipTextLeft"..i]:GetText() == textLeft then
+			_G["GameTooltipTextLeft"..i]:SetText(textLeft);
+			_G["GameTooltipTextRight"..i]:SetText(textRight);
+			GameTooltip:Show();
+
+			ttUpdated = true;
+			break;
+		end
+	end
+
+	if not ttUpdated then
+		GameTooltip:AddDoubleLine(textLeft, textRight);
+		GameTooltip:Show();
+	end
+end
+
+LDU.getLanguageText = function (realmId)
     if realmId ~= nil and LDRealms[LDRegion] ~= nil then
         if type(LDRealms[LDRegion]) == "string" and LDU.locales[LDRealms[LDRegion]] ~= nil then
             return LDU.locales[LDRealms[LDRegion]]
@@ -64,7 +85,7 @@ LDU.getLocale = function (realmId)
     end
 end
 
-LDU.getLanguageText = function (fullname, code)
+LDU.getShortLanguageText = function (fullname, code)
 	if not fullname then
         return nil
     end

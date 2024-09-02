@@ -30,7 +30,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Unit, OnTooltipSetUnit)
 
 		-- LFG
-		if _G.LFGListApplicationViewerScrollFrameButton1 then
+		if _G["LFGListApplicationViewerScrollFrameButton1"] then
 			local hooked = {}
 			local OnEnter, OnLeave
 
@@ -108,30 +108,9 @@ function ShowTooltipByName(fullname)
 end
 
 function DisplayTooltip(realmId)
-	local locale = LDU.getLocale(realmId)
+	local locale = LDU.getLanguageText(realmId)
 	if locale ~= nil then
-		AddTooltipText(format('|cFF0aa79b%s :|r ', LDL.Locale), locale);
-	end
-end
-
-function AddTooltipText(textLeft, textRight)
-	local ttLines = GameTooltip:NumLines();
-	local ttUpdated = false;
-	
-	for i = 1, ttLines do
-		if _G["GameTooltipTextLeft"..i]:GetText() == textLeft then
-			_G["GameTooltipTextLeft"..i]:SetText(textLeft);
-			_G["GameTooltipTextRight"..i]:SetText(textRight);
-			GameTooltip:Show();
-
-			ttUpdated = true;
-			break;
-		end
-	end
-
-	if not ttUpdated then
-		GameTooltip:AddDoubleLine(textLeft, textRight);
-		GameTooltip:Show();
+		LDU.AddTooltipText(format('|cFF0aa79b%s :|r ', LDL.Locale), locale);
 	end
 end
 ------------------------------------
@@ -139,7 +118,7 @@ end
 ----------------- LFG --------------
 function OnLFGListSearchEntryUpdate(self)
     local searchResultInfo = C_LFGList.GetSearchResultInfo(self.resultID)
-    local language = LDU.getLanguageText(searchResultInfo.leaderName, true)
+    local language = LDU.getShortLanguageText(searchResultInfo.leaderName, true)
 	
 	if language ~= nil then
 		self.ActivityName:SetFormattedText("%s %s", language, self.ActivityName:GetText())
@@ -147,7 +126,7 @@ function OnLFGListSearchEntryUpdate(self)
 end
 
 function OnLFGListApplicationViewerUpdateApplicantMember(member, appID, memberIdx, _, _)
-    local language = LDU.getLanguageText(C_LFGList.GetApplicantMemberInfo(appID, memberIdx), true)
+    local language = LDU.getShortLanguageText(C_LFGList.GetApplicantMemberInfo(appID, memberIdx), true)
 	
 	if language ~= nil then
 		member.Name:SetFormattedText("%s %s", language, member.Name:GetText())
