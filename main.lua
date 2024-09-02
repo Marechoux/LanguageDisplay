@@ -13,7 +13,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
 		if LDLFGColors == nil then
 			LDLFGColors = true
 		end
-		
+
 		if LDRegion == nil then
 			LDRegion = GetCurrentRegion()
 		end
@@ -26,7 +26,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			local _, unit = self:GetUnit()
 			ShowTooltip(unit)
 		end
-		
+
 		TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Unit, OnTooltipSetUnit)
 
 		-- LFG
@@ -60,7 +60,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
 					GameTooltip:Hide()
 				end
 			end
-			
+
 			local function SetSearchEntryTooltip(tooltip, resultID, autoAcceptOption)
 				local results = C_LFGList.GetSearchResultInfo(resultID)
 				if not results then
@@ -73,7 +73,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
 				end
 			end
 			hooksecurefunc("LFGListUtil_SetSearchEntryTooltip", SetSearchEntryTooltip)
-			
+
 			for i = 1, 14 do
 				local b = _G["LFGListApplicationViewerScrollFrameButton" .. i]
 				b:HookScript("OnEnter", OnEnter)
@@ -85,7 +85,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
 				f:EnableMouseWheel(false)
 				f:SetToplevel(false)
 			end
-		end			
+		end
     end
 end)
 
@@ -94,7 +94,7 @@ function ShowTooltip(target)
 	if not (UnitIsPlayer(target)) then
 		return
 	end
-	
+
 	local _, realmName = UnitFullName(target)
 	if realmName == nil then
 		realmName = GetRealmName()
@@ -119,7 +119,7 @@ end
 function OnLFGListSearchEntryUpdate(self)
     local searchResultInfo = C_LFGList.GetSearchResultInfo(self.resultID)
     local language = LDU.getShortLanguageText(searchResultInfo.leaderName, true)
-	
+
 	if language ~= nil then
 		self.ActivityName:SetFormattedText("%s %s", language, self.ActivityName:GetText())
 	end
@@ -127,10 +127,10 @@ end
 
 function OnLFGListApplicationViewerUpdateApplicantMember(member, appID, memberIdx, _, _)
     local language = LDU.getShortLanguageText(C_LFGList.GetApplicantMemberInfo(appID, memberIdx), true)
-	
+
 	if language ~= nil then
 		member.Name:SetFormattedText("%s %s", language, member.Name:GetText())
-	end    
+	end
 end
 
 hooksecurefunc("LFGListSearchEntry_Update", OnLFGListSearchEntryUpdate)
@@ -140,8 +140,8 @@ hooksecurefunc("LFGListApplicationViewer_UpdateApplicantMember", OnLFGListApplic
 SLASH_LANGUAGEDISPLAY1 = "/ld";
 SLASH_LANGUAGEDISPLAY2 = "/languagedisplay";
 function SlashCmdList.LANGUAGEDISPLAY(msg)
-	local command, arg = strsplit(" ", msg)
-	
+	local command, _ = strsplit(" ", msg)
+
 	if command == "lfgcolors" then
 		LDLFGColors = not LDLFGColors
 		if LDLFGColors then

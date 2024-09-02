@@ -31,7 +31,7 @@ end
 
 if LOCALE == "frFR" then
 	LDL["AvailableRegions"]	= "Régions disponibles"
-	LDL["AvailableRegions"]	= "Régions disponibles"
+	LDL["CurrentRegion"]	= "La région actuelle est"
 	LDL["ColorsDisabled"]	= "Couleurs désactivées"
 	LDL["ColorsEnabled"]	= "Couleurs activées"
 	LDL["Chinese"]			= "Chinois"
