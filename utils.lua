@@ -49,7 +49,7 @@ LDU.locales_codes_colored = {
 LDU.AddTooltipText = function (textLeft, textRight)
 	local ttLines = GameTooltip:NumLines();
 	local ttUpdated = false;
-	
+
 	for i = 1, ttLines do
 		if _G["GameTooltipTextLeft"..i]:GetText() == textLeft then
 			_G["GameTooltipTextLeft"..i]:SetText(textLeft);
@@ -91,14 +91,14 @@ LDU.getShortLanguageText = function (fullname, code)
     end
 
     local realmId = LDU.getRealmId(fullname)
-	
+
 	if realmId == nil then
 		print(format('|cFF0aa79b[LD] |cFF0aa79bRealm ID not found : %s|r', fullname))
 		return 'NF'
 	end
-	
+
 	local locale = LDRealms[LDRegion][realmId]
-	
+
 	if locale == nil then
 		if LDDebug then
 			print(format('|cFF0aa79b[LD] |cFF0aa79bLocale not found : %d - %s|r', realmId, fullname))
@@ -129,7 +129,7 @@ LDU.getShortLanguageText = function (fullname, code)
 	elseif LDU.locales[locale] ~= nil then
 		locale = LDU.locales[locale]
 	end
-	
+
 	return locale
 end
 
@@ -137,7 +137,7 @@ LDU.getRealmId = function (fullName)
     if not fullName then
 		return nil
 	end
-	
+
 	local realmName
 
     if not string.find(fullName, "%-") then
