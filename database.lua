@@ -249,7 +249,7 @@ LDRealms[1] = {
     [3738] = "enUS", -- Saurfang
 }
 
-LDRealms[2] = "ko_KR"
+LDRealms[2] = "koKR"
 
 LDRealms[3] = {
     [1080] = "enGB", -- Khadgar
@@ -521,7 +521,7 @@ LDRealms[3] = {
     [1408] = "deDE", -- Norgannon
 }
 
-LDRealms[4] = "zh_TW"
+LDRealms[4] = "zhTW"
 
-LDRealms[5] = "zh_CN"
+LDRealms[5] = "zhCN"
 
