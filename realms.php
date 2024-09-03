@@ -80,7 +80,7 @@ class Utils {
         ],
         2 => [
             'name' => 'korea',
-            'fixedValue' => 'ko_KR'
+            'fixedValue' => 'koKR'
         ],
         3 => [
             'name' => 'europe',
@@ -90,11 +90,11 @@ class Utils {
         ],
         4 => [
             'name' => 'taiwan',
-            'fixedValue' => 'zh_TW'
+            'fixedValue' => 'zhTW'
         ],
         5 => [
             'name' => 'china',
-            'fixedValue' => 'zh_CN'
+            'fixedValue' => 'zhCN'
         ]
     ];
 
