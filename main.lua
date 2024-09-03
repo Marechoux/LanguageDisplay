@@ -140,7 +140,7 @@ hooksecurefunc("LFGListApplicationViewer_UpdateApplicantMember", OnLFGListApplic
 SLASH_LANGUAGEDISPLAY1 = "/ld";
 SLASH_LANGUAGEDISPLAY2 = "/languagedisplay";
 function SlashCmdList.LANGUAGEDISPLAY(msg)
-	local command, _ = strsplit(" ", msg)
+	local command, arg = strsplit(" ", msg)
 
 	if command == "lfgcolors" then
 		LDLFGColors = not LDLFGColors
@@ -151,7 +151,8 @@ function SlashCmdList.LANGUAGEDISPLAY(msg)
 		end
 	elseif command == "region" then
 		local regions = {[1] = "US", [2] = "KR", [3] = "EU", [4] = "TW", [5] = "CN"}
-		local arg = tonumber(msg)
+
+		arg = tonumber(arg)
 		if arg == nil or arg < 0 or arg > 4 then
 			print(format("|cFF0aa79b[LD] |r%s: |cFF0aa79b%s |r(|cFF0aa79b%s|r)", LDL.CurrentRegion, LDRegion, regions[LDRegion]))
 			local buffer = format("|cFF0aa79b[LD] |r%s:", LDL.AvailableRegions)

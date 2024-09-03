@@ -97,7 +97,12 @@ LDU.getShortLanguageText = function (fullname, code)
 		return 'NF'
 	end
 
-	local locale = LDRealms[LDRegion][realmId]
+	local locale
+    if type(LDRealms[LDRegion]) == "string" then
+        locale = LDRealms[LDRegion]
+    else
+        locale = LDRealms[LDRegion][realmId]
+    end
 
 	if locale == nil then
 		if LDDebug then
