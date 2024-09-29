@@ -154,10 +154,8 @@ LDU.getRealmId = function (fullName)
     if not realmName then
         return nil
     end
-
-    local id = LibStub("LibRealmInfo"):GetRealmInfo(realmName, LDRegion)
-
-    return id
+    
+    return LDU.getRealmIdByRealmName(realmName)
 end
 
 LDU.getRealmIdByRealmName = function (realmName)
@@ -166,5 +164,11 @@ LDU.getRealmIdByRealmName = function (realmName)
     end
 
     local id = LibStub("LibRealmInfo"):GetRealmInfo(realmName, LDRegion)
+
+    if not id then
+        realmName = realmName:gsub("'", "’")
+        id = LibStub("LibRealmInfo"):GetRealmInfo(realmName, LDRegion)
+    end
+
     return id
 end
