@@ -66,7 +66,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
 				if not results then
 					return
 				end
-				local activityID = results.activityID
+				--local activityID = results.activityID
 				local leaderName = results.leaderName
 				if leaderName then
 					ShowTooltipByName(leaderName);
@@ -152,8 +152,8 @@ function SlashCmdList.LANGUAGEDISPLAY(msg)
 	elseif command == "region" then
 		local regions = {[1] = "US", [2] = "KR", [3] = "EU", [4] = "TW", [5] = "CN"}
 
-		arg = tonumber(arg)
-		if arg == nil or arg < 0 or arg > 4 then
+		local iarg = tonumber(arg)
+		if iarg == nil or iarg < 0 or iarg > 4 then
 			print(format("|cFF0aa79b[LD] |r%s: |cFF0aa79b%s |r(|cFF0aa79b%s|r)", LDL.CurrentRegion, LDRegion, regions[LDRegion]))
 			local buffer = format("|cFF0aa79b[LD] |r%s:", LDL.AvailableRegions)
 			for k, v in pairs(regions) do
@@ -161,7 +161,7 @@ function SlashCmdList.LANGUAGEDISPLAY(msg)
 			end
 			print(buffer)
 		else
-			LDRegion = arg
+			LDRegion = iarg
 			print(format("|cFF0aa79b[LD] |r%s |cFF0aa79b%s |r(|cFF0aa79b%s|r)", LDL.RegionChange, LDRegion, regions[LDRegion]));
 		end
 	elseif command == "debug" then
