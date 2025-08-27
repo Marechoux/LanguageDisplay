@@ -31,9 +31,9 @@ end
 
 if LOCALE == "frFR" then
 	LDL["AvailableRegions"]	= "Régions disponibles"
-	LDL["CurrentRegion"]	= "La région actuelle est"
 	LDL["ColorsDisabled"]	= "Couleurs désactivées"
 	LDL["ColorsEnabled"]	= "Couleurs activées"
+	LDL["CurrentRegion"]	= "La région actuelle est"
 	LDL["Chinese"]			= "Chinois"
 	LDL["English"]			= "Anglais"
 	LDL["EnglishUS"]		= "Anglais (US)"
@@ -49,8 +49,10 @@ if LOCALE == "frFR" then
 	LDL["Spanish"]			= "Espagnol"
 	LDL["SpanishMx"]		= "Espagnol (Mexique)"
 	LDL["Taiwanese"]		= "Taïwanais"
-elseif LOCALE == "deDE" then -- maknae/Alwryan
+elseif LOCALE == "deDE" then -- maknae/Alwryan/Paragalla
 	LDL["AvailableRegions"]	= "Verfügbare Regionen"
+	LDL["ColorsDisabled"]	= "Farben ausgeschalten"
+	LDL["ColorsEnabled"]	= "Farben eingeschalten"
 	LDL["CurrentRegion"]	= "Aktuelle region ist"
 	LDL["Chinese"]			= "Chinesisch"
 	LDL["English"]			= "Englisch"
@@ -139,4 +141,24 @@ elseif LOCALE == "ptBR" then -- Alwryan
 	LDL["Spanish"]			= "Espanhol"
 	LDL["SpanishMx"]		= "Espanhol (México)"
 	LDL["Taiwanese"]		= "Taiwanês"
+elseif LOCALE == "ruRU" then -- ZamestoTV
+	LDL["AvailableRegions"]	= "Доступные регионы"
+	LDL["ColorsDisabled"]	= "Цвета отключены"
+	LDL["ColorsEnabled"]	= "Цвета включены"
+	LDL["CurrentRegion"]	= "Текущий регион"
+	LDL["Chinese"]			= "Chinês"
+	LDL["English"]			= "Английский"
+	LDL["EnglishUS"]		= "Английский (США)"
+	LDL["French"]			= "Французский"
+	LDL["German"]			= "Немецкий"
+	LDL["Italian"]			= "Итальянский"
+	LDL["Korean"]			= "Корейский"
+	LDL["Locale"]			= "Язык"
+	LDL["Portuguese"]		= "Португальский"
+	LDL["PortugueseBr"]		= "Португальский (Бразилия)"
+	LDL["RegionChange"]		= "Новый регион установлен"
+	LDL["Russian"]			= "Русский"
+	LDL["Spanish"]			= "Испанский"
+	LDL["SpanishMx"]		= "Испанский (Мексика)"
+	LDL["Taiwanese"]		= "Тайваньский"
 end
