@@ -91,7 +91,12 @@ end)
 
 --------------- TOOLTIP ------------
 function ShowTooltip(target)
-	if not (UnitIsPlayer(target)) then
+	if not target then
+		return
+	end
+
+	local ok, isPlayer = pcall(UnitIsPlayer, target)
+	if not ok or not isPlayer then
 		return
 	end
 
