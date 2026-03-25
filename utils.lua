@@ -51,7 +51,18 @@ LDU.AddTooltipText = function (textLeft, textRight)
 	local ttUpdated = false;
 
 	for i = 1, ttLines do
-		if _G["GameTooltipTextLeft"..i]:GetText() == textLeft then
+        local line = _G["GameTooltipTextLeft"..i]
+        local leftText = line and line:GetText()
+
+        if not leftText or not textLeft then
+            return
+        end
+
+        if not canaccessvalue(leftText) or not canaccessvalue(textLeft) then
+            return
+        end
+
+        if leftText == textLeft then
 			_G["GameTooltipTextLeft"..i]:SetText(textLeft);
 			_G["GameTooltipTextRight"..i]:SetText(textRight);
 			GameTooltip:Show();
