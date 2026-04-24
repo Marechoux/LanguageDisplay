@@ -18,13 +18,29 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			LDRegion = GetCurrentRegion()
 		end
 
-		local function OnTooltipSetUnit(self)
-			if not self then
+		local function GetTooltipUnitToken(tooltip)
+			if not tooltip then
+				return nil
+			end
+
+			local ok, _, unit = pcall(tooltip.GetUnit, tooltip)
+			if ok and unit and canaccessvalue(unit) then
+				return unit
+			end
+
+			if not UnitExists("mouseover") then
+				return nil
+			end
+
+			return "mouseover"
+		end
+
+		local function OnTooltipSetUnit(tooltip)
+			if tooltip ~= GameTooltip then
 				return
 			end
 
-			local _, unit = self:GetUnit()
-			ShowTooltip(unit)
+			ShowTooltip(GetTooltipUnitToken(tooltip))
 		end
 
 		TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Unit, OnTooltipSetUnit)

@@ -1,4 +1,4 @@
-## Interface: 120001
+## Interface: 120005
 ## Title: LanguageDisplay
 ## IconTexture: 1612573
 ## Author: Nico - Marechoux
