@@ -120,7 +120,7 @@ class Utils {
 
     /**
      * Saves the data as LUA
-     * @param array $languages
+     * @param array $regions
      * @param string $filename
      * @return int|false
      */
