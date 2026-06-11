@@ -43,7 +43,7 @@ LDU.locales_codes_colored = {
     ["zhCN"] = "|cFFff0000C|cFFffd700N|r",
     ["zhTW"] = "|cFF0000ffT|cFFff0000W|r",
     ["ptBR"] = "|cFF339933B|cFFffff00R|r",
-    ["esMX"] = "|cFF00802bM|cFFffffE|cFFff1a1aX|r"
+    ["esMX"] = "|cFF00802bM|cFFffffffE|cFFff1a1aX|r"
 }
 
 LDU.AddTooltipText = function (textLeft, textRight)
