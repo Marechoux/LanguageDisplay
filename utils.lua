@@ -154,6 +154,10 @@ LDU.getRealmId = function (fullName)
 		return nil
 	end
 
+	if not canaccessvalue(fullName) then
+		return nil
+	end
+
 	local realmName
 
     if not string.find(fullName, "%-") then
@@ -170,9 +174,17 @@ LDU.getRealmId = function (fullName)
 end
 
 LDU.getRealmIdByRealmName = function (realmName)
-    if not realmName or realmName == "" then
+    if not realmName then
         return nil
     end
+
+	if not canaccessvalue(realmName) then
+		return nil
+	end
+
+	if realmName == "" then
+		return nil
+	end
 
     local id = LibStub("LibRealmInfo"):GetRealmInfo(realmName, LDRegion)
 

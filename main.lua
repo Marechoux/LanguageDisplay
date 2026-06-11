@@ -1,5 +1,96 @@
 local ADDON = "LanguageDisplay"
 local frame = CreateFrame("FRAME")
+local mouseoverRealmId = nil
+
+local function GetRealmIdByGUID(guid)
+	local guidOk, canAccessGuid = pcall(canaccessvalue, guid)
+	if not guidOk or not canAccessGuid or type(guid) ~= "string" then
+		return nil
+	end
+
+	if guid:sub(1, 7) ~= "Player-" then
+		return nil
+	end
+
+	return LibStub("LibRealmInfo"):GetRealmInfoByGUID(guid)
+end
+
+local function GetUnitRealmId(target)
+	if not target then
+		return nil
+	end
+
+	local realmId = GetRealmIdByGUID(UnitGUID(target))
+	if realmId then
+		return realmId
+	end
+
+	local ok, isPlayer = pcall(UnitIsPlayer, target)
+	if not ok or not isPlayer then
+		return nil
+	end
+
+	local _, realmName = UnitFullName(target)
+	if realmName and not canaccessvalue(realmName) then
+		return nil
+	end
+
+	if realmName == nil then
+		realmName = GetRealmName()
+	end
+
+	return LDU.getRealmIdByRealmName(realmName)
+end
+
+local function GetTooltipUnitToken(tooltip, tooltipData)
+	if tooltip ~= GameTooltip then
+		return nil
+	end
+
+	if tooltip.IsTooltipType and not tooltip:IsTooltipType(Enum.TooltipDataType.Unit) then
+		return nil
+	end
+
+	local owner = tooltip:GetOwner()
+	if owner then
+		local ownerUnit = owner.unit
+		local ownerUnitOk, canAccessOwnerUnit = pcall(canaccessvalue, ownerUnit)
+		if ownerUnitOk and canAccessOwnerUnit then
+			return ownerUnit
+		end
+
+		if owner.GetAttribute then
+			local attrOk, ownerAttrUnit = pcall(owner.GetAttribute, owner, "unit")
+			if attrOk then
+				local attrUnitOk, canAccessAttrUnit = pcall(canaccessvalue, ownerAttrUnit)
+				if attrUnitOk and canAccessAttrUnit then
+					return ownerAttrUnit
+				end
+			end
+		end
+	end
+
+	if not tooltipData and tooltip.GetPrimaryTooltipData then
+		tooltipData = tooltip:GetPrimaryTooltipData()
+	end
+
+	if tooltipData and GetRealmIdByGUID(tooltipData.guid) then
+		local unit = UnitTokenFromGUID(tooltipData.guid)
+		local unitOk, canAccessUnit = pcall(canaccessvalue, unit)
+		if unitOk and canAccessUnit then
+			return unit
+		end
+
+		return "mouseover"
+	end
+
+	if UnitExists("mouseover") then
+		return "mouseover"
+	end
+
+	return nil
+end
+
 frame:RegisterEvent("ADDON_LOADED")
 
 frame:SetScript("OnEvent", function(self, event, ...)
@@ -18,29 +109,30 @@ frame:SetScript("OnEvent", function(self, event, ...)
 			LDRegion = GetCurrentRegion()
 		end
 
-		local function GetTooltipUnitToken(tooltip)
-			if not tooltip then
-				return nil
+		local function OnTooltipSetUnit(tooltip, tooltipData)
+			local realmId = nil
+
+			if tooltipData then
+				realmId = GetRealmIdByGUID(tooltipData.guid)
 			end
 
-			local ok, _, unit = pcall(tooltip.GetUnit, tooltip)
-			if ok and unit and canaccessvalue(unit) then
-				return unit
+			if not realmId and tooltip.GetPrimaryTooltipData then
+				local primaryTooltipData = tooltip:GetPrimaryTooltipData()
+				if primaryTooltipData then
+					realmId = GetRealmIdByGUID(primaryTooltipData.guid)
+				end
 			end
 
-			if not UnitExists("mouseover") then
-				return nil
+			if not realmId then
+				local unit = GetTooltipUnitToken(tooltip, tooltipData)
+				if unit == "mouseover" then
+					realmId = mouseoverRealmId
+				elseif unit then
+					realmId = GetUnitRealmId(unit)
+				end
 			end
 
-			return "mouseover"
-		end
-
-		local function OnTooltipSetUnit(tooltip)
-			if tooltip ~= GameTooltip then
-				return
-			end
-
-			ShowTooltip(GetTooltipUnitToken(tooltip))
+			DisplayTooltip(realmId)
 		end
 
 		TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Unit, OnTooltipSetUnit)
@@ -102,26 +194,15 @@ frame:SetScript("OnEvent", function(self, event, ...)
 				f:SetToplevel(false)
 			end
 		end
+    elseif event == "UPDATE_MOUSEOVER_UNIT" then
+		mouseoverRealmId = GetUnitRealmId("mouseover")
     end
 end)
 
+
 --------------- TOOLTIP ------------
 function ShowTooltip(target)
-	if not target then
-		return
-	end
-
-	local ok, isPlayer = pcall(UnitIsPlayer, target)
-	if not ok or not isPlayer then
-		return
-	end
-
-	local _, realmName = UnitFullName(target)
-	if realmName == nil then
-		realmName = GetRealmName()
-	end
-
-	DisplayTooltip(LDU.getRealmIdByRealmName(realmName))
+	DisplayTooltip(GetUnitRealmId(target))
 end
 
 function ShowTooltipByName(fullname)
